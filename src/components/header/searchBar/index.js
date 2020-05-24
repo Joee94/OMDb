@@ -5,7 +5,7 @@ import { Context } from '../../../Context';
 
 const SearchBar = () => {
 	const {
-		submitSearch,
+		actions,
 		response: { loading },
 		searchValue,
 		cache
@@ -15,7 +15,7 @@ const SearchBar = () => {
 
 	const handleChange = (event) => {
 		event.preventDefault();
-		submitSearch(currentSearchValue, cache);
+		actions.submitSearch(currentSearchValue, cache);
 	};
 	return (
 		<form className="searchBar hide-submit" onSubmit={handleChange}>

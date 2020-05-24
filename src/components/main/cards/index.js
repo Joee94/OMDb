@@ -7,7 +7,7 @@ import { Context } from '../../../Context';
 const Cards = () => {
 	const {
 		movies,
-		replaceMissingImage,
+		actions,
 		response: { error }
 	} = useContext(Context);
 	if (movies) {
@@ -15,7 +15,7 @@ const Cards = () => {
 			const moviesList = movies.map((movie, index) => {
 				return (
 					<li key={`${movie.imdbID}-${index}`}>
-						<Card movie={movie} replaceMissingImage={replaceMissingImage} />
+						<Card movie={movie} actions={actions} />
 					</li>
 				);
 			});

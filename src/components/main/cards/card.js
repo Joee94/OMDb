@@ -5,15 +5,15 @@ import noImage from './noImage.png';
 
 type Props = {
 	movie: MovieData,
-	replaceMissingImage: Function
+	actions: Function
 };
 
-const Card = ({ movie, replaceMissingImage }: Props) => {
+const Card = ({ movie, actions }: Props) => {
 	const poster = movie.Poster === 'N/A' ? noImage : movie.Poster;
 	const imgAltText = movie.Poster === 'N/A' ? `Missing poster for ${movie.Title}` : `Poster for ${movie.Title}`;
 	const ariaLabel = `${movie.Title}. Released ${movie.Year}, Rated ${movie.imdbRating} on IMDB`;
 	const handleError = () => {
-		replaceMissingImage(poster);
+		actions.replaceMissingImage(poster);
 	};
 	return (
 		<div className="card" aria-label={ariaLabel} aria-required="true" tabIndex="0">
