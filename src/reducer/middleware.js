@@ -1,40 +1,11 @@
-import * as actionTypes from '../actionTypes';
+// @flow
+
+import { TRIGGER_ACTION } from '../actionTypes';
 import { getSearchUrl, getIdUrl, sanitizeSearchValue } from './searchUtils';
+import { dispatchFail, dispatchLoading, dispatchSuccess, disptachInCache } from './dispatchSearch';
 
-const disptachInCache = (dispatch, cache, searchValue) => {
-	dispatch({
-		type: actionTypes.SUBMIT_SEARCH,
-		payload: {
-			movies: cache[searchValue],
-			searchValue,
-			cache,
-			response: { error: false, loading: false }
-		}
-	});
-};
-
-const dispatchSuccess = (dispatch, cache, searchValue, movies) => {
-	dispatch({
-		type: actionTypes.SUBMIT_SEARCH,
-		payload: { movies, searchValue, cache, response: { error: false, loading: false } }
-	});
-};
-
-const dispatchFail = (dispatch, cache, searchValue) => {
-	dispatch({
-		type: actionTypes.SUBMIT_SEARCH,
-		payload: { movies: [], searchValue: searchValue, cache, response: { error: true, loading: false } }
-	});
-};
-
-const dispatchLoading = (dispatch, cache, searchValue) => {
-	dispatch({
-		type: actionTypes.SUBMIT_SEARCH,
-		payload: { movies: [], searchValue: searchValue, cache, response: { error: false, loading: true } }
-	});
-};
-const applyMiddleware = (dispatch) => async (action) => {
-	if (action.type === actionTypes.TRIGGER_ACTION) {
+const applyMiddleware = (dispatch: Function) => async (action: Object) => {
+	if (action.type === TRIGGER_ACTION) {
 		const {
 			payload: { searchValue, cache }
 		} = action;
@@ -47,11 +18,13 @@ const applyMiddleware = (dispatch) => async (action) => {
 		} else {
 			try {
 				const serverResponse = await fetch(searchUrl);
+				console.log(serverResponse);
 				const serverResponseJson = await serverResponse.json();
+				console.log(serverResponse);
 				const requests = serverResponseJson.Search.map(async (movie) => await fetch(getIdUrl(movie.imdbID)));
 				const responses = await Promise.all(requests);
 				const movies = await Promise.all(responses.map(async (response) => await response.json()));
-				dispatchSuccess(dispatch, cache, sanitizeSearchValue, movies);
+				dispatchSuccess(dispatch, cache, sanitizedSearchValue, movies);
 			} catch {
 				dispatchFail(dispatch, cache, sanitizedSearchValue);
 			}

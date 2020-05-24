@@ -1,7 +1,7 @@
 export type State = {
 	searchValue: string,
 	movies: Movies,
-	response: Response,
+	response: ApiResponse,
 	cache: Cache,
 	filters: Filters
 };
@@ -10,13 +10,13 @@ export type Cache = { [movieName]: Array<MovieData> };
 
 export type Movies = Array<MovieData>;
 
-export type Response = {
+export type ApiResponse = {
 	loading: boolean,
 	error: boolean
 };
 
-//export type Response = {
-//	Response: 'True' | 'False',
+//export type ApiResponse = {
+//	ApiResponse: 'True' | 'False',
 //	Search: Array<MovieData>,
 //	totalResults: string
 //};
@@ -46,7 +46,7 @@ export type MovieData = {
 	BoxOffice: string,
 	Production: string,
 	Website: string,
-	Response: string
+	ApiResponse: string
 };
 export type Rating = {
 	Source: string,
