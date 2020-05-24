@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`header when loading should create the header component 1`] = `
+<header
+  className="header"
+>
+  <Title />
+  <SearchBar />
+</header>
+`;
+
+exports[`header when not loading should create the header component 1`] = `
+<header
+  className="header"
+>
+  <Title />
+  <SearchBar />
+</header>
+`;

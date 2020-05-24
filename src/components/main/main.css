@@ -1,0 +1,21 @@
+main {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: nowrap;
+	background-color: #e5eef9;
+}
+
+main .filters {
+	order: 0;
+}
+
+main .cards {
+	order: 1;
+}
+
+@media (max-width: 2000px) {
+	main .filters {
+		display: none;
+	}
+}

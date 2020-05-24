@@ -1,0 +1,41 @@
+{
+	"extends": [
+		"prettier",
+		"prettier/react",
+		"eslint:recommended",
+		"plugin:react/recommended",
+		"plugin:jest/recommended",
+		"plugin:jsx-a11y/recommended"
+	],
+	"env": {
+		"browser": true,
+		"jest": true
+	},
+	"plugins": ["prettier", "react", "jest", "import", "flowtype", "jsx-a11y"],
+	"rules": {
+		"react/jsx-filename-extension": [
+			1,
+			{
+				"extensions": [".js", ".jsx", ".test.js"]
+			}
+		],
+		"react/prop-types": 0,
+		"no-underscore-dangle": 0,
+		"import/imports-first": ["error", "absolute-first"],
+		"import/newline-after-import": "error",
+		"flowtype/define-flow-type": 1,
+		"flowtype/use-flow-type": 1,
+		"jsx-a11y/no-noninteractive-tabindex": "off"
+	},
+	"settings": {
+		"react": {
+			"version": "detect"
+		}
+	},
+	"globals": {
+		"process": true,
+		"global": true,
+		"Promise": true
+	},
+	"parser": "babel-eslint"
+}

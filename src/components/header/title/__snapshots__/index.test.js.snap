@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`title should create the header component 1`] = `
+<h1
+  className="title"
+>
+  <span
+    className="OMDb"
+  >
+    OMDb
+  </span>
+  <span
+    className="Search"
+  >
+    Search
+  </span>
+</h1>
+`;

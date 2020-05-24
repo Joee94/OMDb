@@ -1,0 +1,15 @@
+.title {
+	padding: 2vh;
+	margin: 0;
+	font-family: 'HelveticaNeue-Bold', Helvetica, Arial, sans-serif;
+	font-size: 24px;
+}
+
+h1 span.OMDb {
+	color: #7faae4;
+	display: block;
+}
+h1 span.Search {
+	color: #834db7;
+	display: block;
+}
