@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Cards when there are no search results should return the no results message 1`] = `
+<h2>
+  No results found :(
+</h2>
+`;
+
+exports[`Cards when there are search results should create the Cards component 1`] = `
+<ul>
+  <li>
+    <mock-Card />
+  </li>
+  <li>
+    <mock-Card />
+  </li>
+</ul>
+`;
+
+exports[`Cards when there hasnt been a search should return nothing 1`] = `null`;

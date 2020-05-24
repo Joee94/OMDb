@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card poster does not exist should create the Card component 1`] = `
+<div
+  aria-label="star wars. Released 1999, Rated 5/5 on IMDB"
+  aria-required="true"
+  className="card"
+  tabIndex="0"
+>
+  <img
+    alt="Missing poster for star wars"
+    onError={[Function]}
+    src="noImage.png"
+  />
+  <div
+    className="text"
+  >
+    <h1>
+      star wars
+    </h1>
+    <span>
+      <h2
+        className="label"
+      >
+        Year:
+      </h2>
+       
+      <h2
+        className="data"
+      >
+        1999
+      </h2>
+    </span>
+    <span>
+      <h2
+        className="label"
+      >
+        Rating:
+      </h2>
+       
+      <h2
+        className="data"
+      >
+        5/5
+      </h2>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Card poster exists should create the Card component 1`] = `
+<div
+  aria-label="star wars. Released 1999, Rated 5/5 on IMDB"
+  aria-required="true"
+  className="card"
+  tabIndex="0"
+>
+  <img
+    alt="Poster for star wars"
+    onError={[Function]}
+    src="star wars poster"
+  />
+  <div
+    className="text"
+  >
+    <h1>
+      star wars
+    </h1>
+    <span>
+      <h2
+        className="label"
+      >
+        Year:
+      </h2>
+       
+      <h2
+        className="data"
+      >
+        1999
+      </h2>
+    </span>
+    <span>
+      <h2
+        className="label"
+      >
+        Rating:
+      </h2>
+       
+      <h2
+        className="data"
+      >
+        5/5
+      </h2>
+    </span>
+  </div>
+</div>
+`;

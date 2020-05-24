@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Main when loading should create the Main component 1`] = `
+<main>
+  <object
+    data="loading.svg"
+    type="image/svg+xml"
+  >
+    svg-animation
+  </object>
+  <mock-Cards />
+</main>
+`;
+
+exports[`Main when not loading should create the Main component 1`] = `
+<main>
+  <mock-Cards />
+</main>
+`;

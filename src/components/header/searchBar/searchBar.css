@@ -1,0 +1,28 @@
+.searchBar input {
+	background-image: url('search.svg');
+	background-repeat: no-repeat;
+	background-position: right;
+	background-origin: content-box;
+	border: 1px solid rgb(221, 221, 221);
+	border-radius: 10px;
+	width: 90%;
+	font-size: 20px;
+	-moz-box-shadow: inset 0 2px 4px hsla(0, 0%, 0%, 0.08);
+	-webkit-box-shadow: inset 0 2px 4px hsla(0, 0%, 0%, 0.08);
+	box-shadow: inset 0 2px 4px hsla(0, 0%, 0%, 0.08);
+	padding: 20px;
+	color: #333333;
+}
+
+.searchBar form {
+	margin-left: 20px;
+}
+
+form.hide-submit input[type='submit'] {
+	display: none;
+}
+
+.searchBar {
+	width: 100%;
+	padding-bottom: 10px;
+}
