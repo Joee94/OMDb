@@ -7,25 +7,23 @@ const applyMiddleware = (dispatch) => (action) =>
 	match(action.type)
 		.equals(actionTypes.TRIGGER_ACTION)
 		.then(() => {
-			const searchValue = sanitizeSearchValue(action.payload.searchValue);
+			const {
+				payload: { searchValue, cache }
+			} = action;
+			const sanitizedSearchValue = sanitizeSearchValue(searchValue);
 			const searchUrl = getSearchUrl(searchValue);
 			dispatch({
 				type: actionTypes.SUBMIT_SEARCH,
-				payload: {
-					movies: [],
-					searchValue,
-					cache: action.payload.cache,
-					response: { error: false, loading: true }
-				}
+				payload: { movies: [], searchValue: sanitizedSearchValue, cache, response: { error: false, loading: true } }
 			});
-			if (searchValue in action.payload.cache) {
+			if (sanitizedSearchValue in cache) {
 				// If we've searched it already just load that
 				dispatch({
 					type: actionTypes.SUBMIT_SEARCH,
 					payload: {
-						movies: action.payload.cache[searchValue],
-						searchValue,
-						cache: action.payload.cache,
+						movies: cache[sanitizedSearchValue],
+						searchValue: sanitizedSearchValue,
+						cache,
 						response: { error: false, loading: false }
 					}
 				});
@@ -35,22 +33,16 @@ const applyMiddleware = (dispatch) => (action) =>
 					.then((serverResponseJson) => serverResponseJson.Search.map((movie) => fetch(getIdUrl(movie.imdbID))))
 					.then((requests) => Promise.all(requests))
 					.then((responses) => Promise.all(responses.map((response) => response.json())))
-					.then((movieData) => {
-						console.log(searchValue);
+					.then((movies) => {
 						dispatch({
 							type: actionTypes.SUBMIT_SEARCH,
-							payload: {
-								movies: movieData,
-								searchValue,
-								cache: action.payload.cache,
-								response: { error: false, loading: false }
-							}
+							payload: { movies, searchValue: sanitizedSearchValue, cache, response: { error: false, loading: false } }
 						});
 					})
 					.catch(() =>
 						dispatch({
 							type: actionTypes.SUBMIT_SEARCH,
-							payload: { movies: [], searchValue, cache: action.payload.cache, response: { error: true, loading: false } }
+							payload: { movies: [], searchValue: sanitizedSearchValue, cache, response: { error: true, loading: false } }
 						})
 					);
 			}
