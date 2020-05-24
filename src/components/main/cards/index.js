@@ -12,9 +12,9 @@ const Cards = () => {
 	} = useContext(Context);
 	if (movies) {
 		if (movies.length > 0) {
-			const moviesList = movies.map((movie) => {
+			const moviesList = movies.map((movie, index) => {
 				return (
-					<li key={movie.imdbID}>
+					<li key={`${movie.imdbID}-${index}`}>
 						<Card movie={movie} replaceMissingImage={replaceMissingImage} />
 					</li>
 				);

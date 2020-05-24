@@ -23,7 +23,7 @@ const applyMiddleware = (dispatch) => (action) =>
 				dispatch({
 					type: actionTypes.SUBMIT_SEARCH,
 					payload: {
-						movies: action.payload.movies,
+						movies: action.payload.cache[searchValue],
 						searchValue,
 						cache: action.payload.cache,
 						response: { error: false, loading: false }
