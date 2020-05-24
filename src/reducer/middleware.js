@@ -1,46 +1,60 @@
 import * as actionTypes from '../actionTypes';
 import { getSearchUrl, getIdUrl, sanitizeSearchValue } from './searchUtils';
 
-const applyMiddleware = (dispatch) => (action) => {
+const disptachInCache = (dispatch, cache, searchValue) => {
+	dispatch({
+		type: actionTypes.SUBMIT_SEARCH,
+		payload: {
+			movies: cache[searchValue],
+			searchValue,
+			cache,
+			response: { error: false, loading: false }
+		}
+	});
+};
+
+const dispatchSuccess = (dispatch, cache, searchValue, movies) => {
+	dispatch({
+		type: actionTypes.SUBMIT_SEARCH,
+		payload: { movies, searchValue, cache, response: { error: false, loading: false } }
+	});
+};
+
+const dispatchFail = (dispatch, cache, searchValue) => {
+	dispatch({
+		type: actionTypes.SUBMIT_SEARCH,
+		payload: { movies: [], searchValue: searchValue, cache, response: { error: true, loading: false } }
+	});
+};
+
+const dispatchLoading = (dispatch, cache, searchValue) => {
+	dispatch({
+		type: actionTypes.SUBMIT_SEARCH,
+		payload: { movies: [], searchValue: searchValue, cache, response: { error: false, loading: true } }
+	});
+};
+const applyMiddleware = (dispatch) => async (action) => {
 	if (action.type === actionTypes.TRIGGER_ACTION) {
 		const {
 			payload: { searchValue, cache }
 		} = action;
 		const sanitizedSearchValue = sanitizeSearchValue(searchValue);
 		const searchUrl = getSearchUrl(searchValue);
-		dispatch({
-			type: actionTypes.SUBMIT_SEARCH,
-			payload: { movies: [], searchValue: sanitizedSearchValue, cache, response: { error: false, loading: true } }
-		});
+		dispatchLoading(dispatch, cache, searchValue);
 		if (sanitizedSearchValue in cache) {
 			// If we've searched it already just load that
-			dispatch({
-				type: actionTypes.SUBMIT_SEARCH,
-				payload: {
-					movies: cache[sanitizedSearchValue],
-					searchValue: sanitizedSearchValue,
-					cache,
-					response: { error: false, loading: false }
-				}
-			});
+			disptachInCache(dispatch, cache, sanitizedSearchValue);
 		} else {
-			fetch(searchUrl)
-				.then((serverResponse) => serverResponse.json())
-				.then((serverResponseJson) => serverResponseJson.Search.map((movie) => fetch(getIdUrl(movie.imdbID))))
-				.then((requests) => Promise.all(requests))
-				.then((responses) => Promise.all(responses.map((response) => response.json())))
-				.then((movies) => {
-					dispatch({
-						type: actionTypes.SUBMIT_SEARCH,
-						payload: { movies, searchValue: sanitizedSearchValue, cache, response: { error: false, loading: false } }
-					});
-				})
-				.catch(() =>
-					dispatch({
-						type: actionTypes.SUBMIT_SEARCH,
-						payload: { movies: [], searchValue: sanitizedSearchValue, cache, response: { error: true, loading: false } }
-					})
-				);
+			try {
+				const serverResponse = await fetch(searchUrl);
+				const serverResponseJson = await serverResponse.json();
+				const requests = serverResponseJson.Search.map(async (movie) => await fetch(getIdUrl(movie.imdbID)));
+				const responses = await Promise.all(requests);
+				const movies = await Promise.all(responses.map(async (response) => await response.json()));
+				dispatchSuccess(dispatch, cache, sanitizeSearchValue, movies);
+			} catch {
+				dispatchFail(dispatch, cache, sanitizedSearchValue);
+			}
 		}
 	} else {
 		dispatch(action);
