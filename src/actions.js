@@ -16,24 +16,21 @@ export const useActions = (state: State, dispatch: Object) => ({
 		[dispatch]
 	),
 
-	submitFilters: useCallback(() => {
-		dispatch({
-			type: actionTypes.SUBMIT_FILTERS,
-			payload: {
-				movies: state.movies
-			}
-		});
-	}, [dispatch]),
+	submitFilters: useCallback(
+		(movies: Movies) => {
+			dispatch({
+				type: actionTypes.SUBMIT_FILTERS,
+				payload: { movies }
+			});
+		},
+		[dispatch]
+	),
 
 	submitSearch: useCallback(
-		(searchValue: string, cache: Cache) => {
+		(movies: Movies, searchValue: string, cache: Cache) => {
 			dispatch({
 				type: actionTypes.TRIGGER_ACTION,
-				payload: {
-					movies: state.movies,
-					searchValue,
-					cache
-				}
+				payload: { movies, searchValue, cache }
 			});
 		},
 		[dispatch]

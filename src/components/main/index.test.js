@@ -6,7 +6,7 @@ jest.mock('./cards', () => () => <mock-Cards />);
 
 describe('Main', () => {
 	describe('when not loading', () => {
-		const contextValues = { response: { loading: false } };
+		const contextValues = { state: { response: { loading: false } } };
 		jest.spyOn(React, 'useContext').mockImplementation(() => contextValues);
 		const component = renderer.create(<Main />);
 		it('should create the Main component', () => {
@@ -14,7 +14,7 @@ describe('Main', () => {
 		});
 	});
 	describe('when loading', () => {
-		const contextValues = { response: { loading: true } };
+		const contextValues = { state: { response: { loading: true } } };
 		jest.spyOn(React, 'useContext').mockImplementation(() => contextValues);
 		const component = renderer.create(<Main />);
 		it('should create the Main component', () => {

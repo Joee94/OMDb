@@ -4,7 +4,7 @@ import SearchBar from './index';
 
 describe('SearchBar', () => {
 	describe('when not loading', () => {
-		const contextValues = { response: { loading: false } };
+		const contextValues = { state: { response: { loading: false }, searchValue: 'mock-search-value' } };
 		jest.spyOn(React, 'useContext').mockImplementation(() => contextValues);
 		const component = renderer.create(<SearchBar />);
 		it('should create the SearchBar component', () => {
@@ -12,7 +12,7 @@ describe('SearchBar', () => {
 		});
 	});
 	describe('when loading', () => {
-		const contextValues = { response: { loading: true } };
+		const contextValues = { state: { response: { loading: true }, searchValue: 'mock-search-value' } };
 		jest.spyOn(React, 'useContext').mockImplementation(() => contextValues);
 		const component = renderer.create(<SearchBar />);
 		it('should create the SearchBar component', () => {

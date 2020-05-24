@@ -8,7 +8,9 @@ import { Context } from '../../Context';
 const Main = () => {
 	let loadingIcon = null;
 	const {
-		response: { loading }
+		state: {
+			response: { loading }
+		}
 	} = useContext(Context);
 	if (loading) {
 		loadingIcon = (

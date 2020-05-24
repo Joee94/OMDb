@@ -6,9 +6,11 @@ import { Context } from '../../../Context';
 
 const Cards = () => {
 	const {
-		movies,
-		actions,
-		response: { error }
+		state: {
+			movies,
+			response: { error }
+		},
+		actions
 	} = useContext(Context);
 	if (movies) {
 		if (movies.length > 0) {
