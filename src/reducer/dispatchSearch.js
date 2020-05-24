@@ -2,14 +2,14 @@
 
 import { SUBMIT_SEARCH } from '../actionTypes';
 
-export const disptachInCache = (dispatch: Function, cache: Cache, searchValue: string) => {
+export const disptachInCache = (dispatch: Function, cache: Cache, searchValue: string, response: ApiResponse) => {
 	dispatch({
 		type: SUBMIT_SEARCH,
 		payload: {
 			movies: cache[searchValue],
 			searchValue,
 			cache,
-			response: { error: false, loading: false }
+			response: { ...response, loading: false }
 		}
 	});
 };

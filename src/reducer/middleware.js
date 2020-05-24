@@ -7,20 +7,18 @@ import { dispatchFail, dispatchLoading, dispatchSuccess, disptachInCache } from 
 const applyMiddleware = (dispatch: Function) => async (action: Object) => {
 	if (action.type === TRIGGER_ACTION) {
 		const {
-			payload: { searchValue, cache }
+			payload: { searchValue, cache, response }
 		} = action;
 		const sanitizedSearchValue = sanitizeSearchValue(searchValue);
-		const searchUrl = getSearchUrl(searchValue);
-		dispatchLoading(dispatch, cache, searchValue);
+		const searchUrl = getSearchUrl(sanitizedSearchValue);
+		dispatchLoading(dispatch, cache, sanitizedSearchValue);
 		if (sanitizedSearchValue in cache) {
 			// If we've searched it already just load that
-			disptachInCache(dispatch, cache, sanitizedSearchValue);
+			disptachInCache(dispatch, cache, sanitizedSearchValue, response);
 		} else {
 			try {
 				const serverResponse = await fetch(searchUrl);
-				console.log(serverResponse);
 				const serverResponseJson = await serverResponse.json();
-				console.log(serverResponse);
 				const requests = serverResponseJson.Search.map(async (movie) => await fetch(getIdUrl(movie.imdbID)));
 				const responses = await Promise.all(requests);
 				const movies = await Promise.all(responses.map(async (response) => await response.json()));
