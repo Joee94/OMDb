@@ -24,9 +24,8 @@ const Cards = () => {
 	}, [searchValue, page, totalResults]);
 
 	function handleScroll() {
-		if (!loading)
-			if (window.innerHeight + window.scrollY >= document.body.offsetHeight)
-				if (movies.length < totalResults) actions.scrollSearch(searchValue, cache, movies, page, totalResults);
+		if (window.innerHeight + document.documentElement?.scrollTop <= document.documentElement?.offsetHeight - 50 && !loading) return;
+		if (movies.length < totalResults) actions.scrollSearch(searchValue, cache, movies, page, totalResults);
 		console.log('Fetch more list items!');
 	}
 
