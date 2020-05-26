@@ -121,3 +121,9 @@ ul {
 	color: #834db7;
 	font-weight: 500;
 }
+
+.endString {
+	display: flex;
+	justify-content: center;
+	color: #34283f;
+}

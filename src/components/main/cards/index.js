@@ -4,6 +4,7 @@ import Card from './card';
 import './card.css';
 import { Context } from '../../../Context';
 
+const endString = `That's all folks`;
 const Cards = () => {
 	const {
 		state: {
@@ -16,7 +17,6 @@ const Cards = () => {
 		},
 		actions
 	} = useContext(Context);
-	console.log(page);
 
 	useEffect(() => {
 		window.addEventListener('scroll', handleScroll);
@@ -30,6 +30,7 @@ const Cards = () => {
 	}
 
 	if (movies) {
+		const noMoviesLeft = movies.length >= totalResults ? <h1 className="endString">{endString}</h1> : null;
 		if (movies.length > 0) {
 			const moviesList = movies.map((movie, index) => {
 				return (
@@ -38,7 +39,12 @@ const Cards = () => {
 					</li>
 				);
 			});
-			return <ul>{moviesList}</ul>;
+			return (
+				<div className="cards">
+					<ul>{moviesList}</ul>
+					{noMoviesLeft}
+				</div>
+			);
 		}
 		if (error) return <h2>No results found :(</h2>;
 	}
