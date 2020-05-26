@@ -11,7 +11,8 @@ const Cards = () => {
 			response: { error, loading },
 			cache,
 			page,
-			searchValue
+			searchValue,
+			totalResults
 		},
 		actions
 	} = useContext(Context);
@@ -20,11 +21,11 @@ const Cards = () => {
 	useEffect(() => {
 		window.addEventListener('scroll', handleScroll);
 		return () => window.removeEventListener('scroll', handleScroll);
-	}, [searchValue, page]);
+	}, [searchValue, page, totalResults]);
 
 	function handleScroll() {
 		if (window.innerHeight + document.documentElement?.scrollTop !== document.documentElement?.offsetHeight && !loading) return;
-		actions.scrollSearch(searchValue, cache, movies, page);
+		if (movies.length < totalResults) actions.scrollSearch(searchValue, cache, movies, page, totalResults);
 		console.log('Fetch more list items!');
 	}
 

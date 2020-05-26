@@ -19,8 +19,8 @@ const applyMiddleware = (dispatch: Function) => async (action: Object) => {
 			disptachInCache(dispatch, cache, sanitizedSearchValue, response);
 		} else {
 			try {
-				const movies = await getMovies(searchUrl);
-				dispatchSuccess(dispatch, cache, sanitizedSearchValue, movies, 1);
+				const { movies, totalResults } = await getMovies(searchUrl);
+				dispatchSuccess(dispatch, cache, sanitizedSearchValue, movies, 1, totalResults);
 			} catch {
 				dispatchFail(dispatch, cache, sanitizedSearchValue);
 			}
@@ -32,8 +32,8 @@ const applyMiddleware = (dispatch: Function) => async (action: Object) => {
 		try {
 			const searchUrl = getSearchUrl(searchValue, page);
 			console.log(searchUrl);
-			const newMovies = await getMovies(searchUrl);
-			dispatchSuccess(dispatch, cache, searchValue, [...movies, ...newMovies], page);
+			const { movies: newMovies, totalResults } = await getMovies(searchUrl);
+			dispatchSuccess(dispatch, cache, searchValue, [...movies, ...newMovies], page, totalResults);
 		} catch {
 			dispatchFail(dispatch, cache, searchValue);
 		}

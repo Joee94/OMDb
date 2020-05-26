@@ -4,7 +4,8 @@ export type State = {
 	response: ApiResponse,
 	cache: Cache,
 	filters: Filters,
-	page: number
+	page: number,
+	totalResults: number
 };
 
 export type Cache = { [movieName]: Array<MovieData> };

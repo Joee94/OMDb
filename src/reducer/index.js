@@ -13,7 +13,8 @@ const reducer = (state = initialState, action) => {
 				action.payload.searchValue,
 				action.payload.cache,
 				action.payload.response,
-				action.payload.page
+				action.payload.page,
+				action.payload.totalResults
 			);
 			break;
 		}
