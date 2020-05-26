@@ -27,10 +27,10 @@ export const useActions = (state: State, dispatch: Object) => ({
 	),
 
 	submitSearch: useCallback(
-		(movies: Movies, searchValue: string, cache: Cache, response: ApiResponse) => {
+		(searchValue: string, cache: Cache, response: ApiResponse) => {
 			dispatch({
 				type: actionTypes.TRIGGER_ACTION,
-				payload: { movies, searchValue, cache, response }
+				payload: { searchValue, cache, response }
 			});
 		},
 		[dispatch]

@@ -5,7 +5,7 @@ import { Context } from '../../../Context';
 
 const SearchBar = () => {
 	const {
-		state: { searchValue, cache, response, movies },
+		state: { searchValue, cache, response },
 		actions
 	} = useContext(Context);
 	const searchLabel = `Search OMDb's film database`;
@@ -13,7 +13,7 @@ const SearchBar = () => {
 
 	const handleChange = (event) => {
 		event.preventDefault();
-		actions.submitSearch(movies, currentSearchValue, cache, response);
+		actions.submitSearch(currentSearchValue, cache, response);
 	};
 	return (
 		<form className="searchBar hide-submit" onSubmit={handleChange}>
