@@ -8,7 +8,13 @@ const reducer = (state = initialState, action) => {
 	let newState = initialState;
 	switch (action.type) {
 		case actionTypes.SUBMIT_SEARCH: {
-			newState = submitSearch(action.payload.movies, action.payload.searchValue, action.payload.cache, action.payload.response);
+			newState = submitSearch(
+				action.payload.movies,
+				action.payload.searchValue,
+				action.payload.cache,
+				action.payload.response,
+				action.payload.page
+			);
 			break;
 		}
 		case actionTypes.REPLACE_MISSING_IMAGES: {

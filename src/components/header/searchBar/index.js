@@ -13,7 +13,7 @@ const SearchBar = () => {
 
 	const handleChange = (event) => {
 		event.preventDefault();
-		actions.submitSearch(currentSearchValue, cache, response);
+		actions.submitSearch(currentSearchValue, cache, response, 1);
 	};
 	return (
 		<form className="searchBar hide-submit" onSubmit={handleChange}>

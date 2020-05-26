@@ -14,10 +14,10 @@ export const disptachInCache = (dispatch: Function, cache: Cache, searchValue: s
 	});
 };
 
-export const dispatchSuccess = (dispatch: Function, cache: Cache, searchValue: string, movies: Movies) => {
+export const dispatchSuccess = (dispatch: Function, cache: Cache, searchValue: string, movies: Movies, page: number) => {
 	dispatch({
 		type: SUBMIT_SEARCH,
-		payload: { movies, searchValue, cache, response: { error: false, loading: false } }
+		payload: { movies, searchValue, cache, response: { error: false, loading: false }, page }
 	});
 };
 

@@ -3,7 +3,8 @@ export type State = {
 	movies: Movies,
 	response: ApiResponse,
 	cache: Cache,
-	filters: Filters
+	filters: Filters,
+	page: number
 };
 
 export type Cache = { [movieName]: Array<MovieData> };

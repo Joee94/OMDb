@@ -1,31 +1,41 @@
 // @flow
 
-import { TRIGGER_ACTION } from '../actionTypes';
-import { getSearchUrl, getIdUrl, sanitizeSearchValue } from './searchUtils';
+import { INITIAL_SEARCH, SCROLL_SEARCH } from '../actionTypes';
+import { getSearchUrl, sanitizeSearchValue } from './searchUtils';
 import { dispatchFail, dispatchLoading, dispatchSuccess, disptachInCache } from './dispatchSearch';
+import getMovies from './getMovies';
 
 const applyMiddleware = (dispatch: Function) => async (action: Object) => {
-	if (action.type === TRIGGER_ACTION) {
+	if (action.type === INITIAL_SEARCH) {
 		const {
 			payload: { searchValue, cache, response }
 		} = action;
 		const sanitizedSearchValue = sanitizeSearchValue(searchValue);
-		const searchUrl = getSearchUrl(sanitizedSearchValue);
+		const searchUrl = getSearchUrl(sanitizedSearchValue, 1);
+		console.log(searchUrl);
 		dispatchLoading(dispatch, cache, sanitizedSearchValue);
 		if (sanitizedSearchValue in cache) {
 			// If we've searched it already just load that
 			disptachInCache(dispatch, cache, sanitizedSearchValue, response);
 		} else {
 			try {
-				const serverResponse = await fetch(searchUrl);
-				const serverResponseJson = await serverResponse.json();
-				const requests = serverResponseJson.Search.map(async (movie) => await fetch(getIdUrl(movie.imdbID)));
-				const responses = await Promise.all(requests);
-				const movies = await Promise.all(responses.map(async (response) => await response.json()));
-				dispatchSuccess(dispatch, cache, sanitizedSearchValue, movies);
+				const movies = await getMovies(searchUrl);
+				dispatchSuccess(dispatch, cache, sanitizedSearchValue, movies, 1);
 			} catch {
 				dispatchFail(dispatch, cache, sanitizedSearchValue);
 			}
+		}
+	} else if (action.type === SCROLL_SEARCH) {
+		const {
+			payload: { searchValue, page, cache, movies }
+		} = action;
+		try {
+			const searchUrl = getSearchUrl(searchValue, page);
+			console.log(searchUrl);
+			const newMovies = await getMovies(searchUrl);
+			dispatchSuccess(dispatch, cache, searchValue, [...movies, ...newMovies], page);
+		} catch {
+			dispatchFail(dispatch, cache, searchValue);
 		}
 	} else {
 		dispatch(action);

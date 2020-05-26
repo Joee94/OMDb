@@ -1,5 +1,5 @@
 // @flow
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import Cards from './cards';
 import './main.css';
 import Loading from './loading.svg';
@@ -19,14 +19,6 @@ const Main = () => {
 			</object>
 		);
 	}
-	useEffect(() => {
-		window.addEventListener('scroll', () => {
-			if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-				console.log("you're at the bottom of the page");
-				//show loading spinner and make fetch request to api
-			}
-		});
-	}, []);
 
 	return (
 		<main>

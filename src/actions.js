@@ -27,10 +27,21 @@ export const useActions = (state: State, dispatch: Object) => ({
 	),
 
 	submitSearch: useCallback(
-		(searchValue: string, cache: Cache, response: ApiResponse) => {
+		(searchValue: string, cache: Cache, response: ApiResponse, page: number) => {
+			console.log(page);
 			dispatch({
-				type: actionTypes.TRIGGER_ACTION,
-				payload: { searchValue, cache, response }
+				type: actionTypes.INITIAL_SEARCH,
+				payload: { searchValue, cache, response, page }
+			});
+		},
+		[dispatch]
+	),
+	scrollSearch: useCallback(
+		(searchValue: string, cache: Cache, movies: Movies, page: number) => {
+			console.log(page);
+			dispatch({
+				type: actionTypes.SCROLL_SEARCH,
+				payload: { searchValue, cache, movies, page: state.page }
 			});
 		},
 		[dispatch]
