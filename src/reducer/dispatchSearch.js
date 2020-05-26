@@ -6,10 +6,12 @@ export const disptachInCache = (dispatch: Function, cache: Cache, searchValue: s
 	dispatch({
 		type: SUBMIT_SEARCH,
 		payload: {
-			movies: cache[searchValue],
+			movies: cache[searchValue].movies,
 			searchValue,
 			cache,
-			response: { ...response, loading: false }
+			response: { ...response, loading: false },
+			page: cache[searchValue].page,
+			totalResults: cache[searchValue].totalResults
 		}
 	});
 };

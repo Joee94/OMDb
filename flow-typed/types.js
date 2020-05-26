@@ -8,7 +8,7 @@ export type State = {
 	totalResults: number
 };
 
-export type Cache = { [movieName]: Array<MovieData> };
+export type Cache = { [movieName]: { movies: Array<MovieData>, page: number, totalResults: number } };
 
 export type Movies = Array<MovieData>;
 

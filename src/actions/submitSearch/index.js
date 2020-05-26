@@ -8,6 +8,13 @@ const submitSearch = (
 	page: number,
 	totalResults: number
 ): $Shape<State> => {
-	return { movies, searchValue, cache: { ...cache, [searchValue]: movies }, response, page: page + 1, totalResults };
+	return {
+		movies,
+		searchValue,
+		cache: { ...cache, [searchValue]: { movies, page, totalResults } },
+		response,
+		page: page + 1,
+		totalResults
+	};
 };
 export default submitSearch;
