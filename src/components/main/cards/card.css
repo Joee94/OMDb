@@ -1,5 +1,5 @@
 li {
-	max-height: 130px;
+	max-height: 150px;
 	transition: max-height 0.1s ease-out;
 	display: inline-block;
 	margin: 1vh;
@@ -51,6 +51,12 @@ li {
 	border-radius: 25px;
 }
 
+li:focus-within {
+	position: relative;
+	max-height: 1000px;
+	transition: max-height 0.5s ease-in;
+}
+
 li:focus-within .card .text h1 {
 	-webkit-line-clamp: 3;
 	-webkit-box-orient: vertical;
@@ -64,14 +70,13 @@ li:hover {
 }
 
 ul {
-	margin: 2vh;
+	margin: 5vh;
 	display: flex;
 	list-style-type: none;
 	flex-wrap: wrap;
 	padding: 1vh;
 	justify-content: center;
 	width: 90vw;
-	padding-top: 4vh;
 }
 
 .card img {
