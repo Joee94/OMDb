@@ -2,7 +2,7 @@ const initialState = {
 	searchValue: '',
 	response: {
 		loading: false,
-		error: false
+		error: ''
 	},
 	cache: {},
 	filters: {

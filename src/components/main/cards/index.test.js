@@ -24,7 +24,7 @@ describe('Cards', () => {
 	});
 	describe('when there are no search results', () => {
 		const contextValues = {
-			state: { movies: [], searchValue: 'hello', response: { error: true } }
+			state: { movies: [], searchValue: 'hello', response: { error: 'No search results' } }
 		};
 		jest.spyOn(React, 'useContext').mockImplementation(() => contextValues);
 		const component = renderer.create(<Cards />);

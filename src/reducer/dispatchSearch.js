@@ -26,20 +26,20 @@ export const dispatchSuccess = (
 ) => {
 	dispatch({
 		type: SUBMIT_SEARCH,
-		payload: { movies, searchValue, cache, response: { error: false, loading: false }, page, totalResults }
+		payload: { movies, searchValue, cache, response: { error: '', loading: false }, page, totalResults }
 	});
 };
 
-export const dispatchFail = (dispatch: Function, cache: Cache, searchValue: string) => {
+export const dispatchFail = (dispatch: Function, cache: Cache, searchValue: string, error: string) => {
 	dispatch({
 		type: SUBMIT_SEARCH,
-		payload: { movies: [], searchValue, cache, response: { error: true, loading: false } }
+		payload: { movies: [], searchValue, cache, response: { error, loading: false } }
 	});
 };
 
 export const dispatchLoading = (dispatch: Function, cache: Cache, searchValue: string) => {
 	dispatch({
 		type: SUBMIT_SEARCH,
-		payload: { movies: [], searchValue, cache, response: { error: false, loading: true } }
+		payload: { movies: [], searchValue, cache, response: { error: '', loading: true } }
 	});
 };

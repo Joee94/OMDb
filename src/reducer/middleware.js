@@ -21,8 +21,9 @@ const applyMiddleware = (dispatch: Function) => async (action: Object) => {
 			try {
 				const { movies, totalResults } = await getMovies(searchUrl);
 				dispatchSuccess(dispatch, cache, sanitizedSearchValue, movies, 1, totalResults);
-			} catch {
-				dispatchFail(dispatch, cache, sanitizedSearchValue);
+			} catch (error) {
+				console.log(error);
+				dispatchFail(dispatch, cache, searchValue, error);
 			}
 		}
 	} else if (action.type === SCROLL_SEARCH) {
@@ -34,8 +35,9 @@ const applyMiddleware = (dispatch: Function) => async (action: Object) => {
 			console.log(searchUrl);
 			const { movies: newMovies, totalResults } = await getMovies(searchUrl);
 			dispatchSuccess(dispatch, cache, searchValue, [...movies, ...newMovies], page, totalResults);
-		} catch {
-			dispatchFail(dispatch, cache, searchValue);
+		} catch (error) {
+			console.log(error);
+			dispatchFail(dispatch, cache, searchValue, error);
 		}
 	} else {
 		dispatch(action);

@@ -2,7 +2,7 @@
 
 exports[`Cards when there are no search results should return the no results message 1`] = `
 <h2>
-  No results found :(
+  No search results
 </h2>
 `;
 

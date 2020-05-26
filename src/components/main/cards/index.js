@@ -46,7 +46,7 @@ const Cards = () => {
 				</div>
 			);
 		}
-		if (error) return <h2>No results found :(</h2>;
+		if (error) return <h2>{error}</h2>;
 	}
 	return null;
 };

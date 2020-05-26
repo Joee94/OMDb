@@ -14,7 +14,7 @@ export type Movies = Array<MovieData>;
 
 export type ApiResponse = {
 	loading: boolean,
-	error: boolean
+	error: string
 };
 
 //export type ApiResponse = {
