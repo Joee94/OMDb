@@ -2,13 +2,14 @@
 
 exports[`Main when loading should create the Main component 1`] = `
 <main>
+  <mock-Cards />
   <object
+    className="loading"
     data="loading.svg"
     type="image/svg+xml"
   >
     svg-animation
   </object>
-  <mock-Cards />
 </main>
 `;
 

@@ -13,7 +13,7 @@ const applyMiddleware = (dispatch: Function) => async (action: Object) => {
 		const sanitizedSearchValue = sanitizeSearchValue(searchValue);
 		const searchUrl = getSearchUrl(sanitizedSearchValue, 1);
 		console.log(searchUrl);
-		dispatchLoading(dispatch, cache, sanitizedSearchValue);
+		dispatchLoading(dispatch, cache, sanitizedSearchValue, []);
 		if (sanitizedSearchValue in cache) {
 			// If we've searched it already just load that
 			disptachInCache(dispatch, cache, sanitizedSearchValue, response);
@@ -31,6 +31,7 @@ const applyMiddleware = (dispatch: Function) => async (action: Object) => {
 			payload: { searchValue, page, cache, movies }
 		} = action;
 		try {
+			dispatchLoading(dispatch, cache, searchValue, movies);
 			const searchUrl = getSearchUrl(searchValue, page);
 			console.log(searchUrl);
 			const { movies: newMovies, totalResults } = await getMovies(searchUrl);

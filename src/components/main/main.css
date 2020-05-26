@@ -2,7 +2,7 @@ main {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	flex-wrap: nowrap;
+	flex-wrap: wrap;
 	background-color: #e5eef9;
 }
 
@@ -12,6 +12,15 @@ main .filters {
 
 main .cards {
 	order: 1;
+}
+
+.loading {
+	display: flex;
+	order: 2;
+}
+
+.cards + .loading {
+	margin-top: -2%;
 }
 
 @media (max-width: 2000px) {

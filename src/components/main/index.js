@@ -13,8 +13,9 @@ const Main = () => {
 		}
 	} = useContext(Context);
 	if (loading) {
+		console.log('loading');
 		loadingIcon = (
-			<object type="image/svg+xml" data={Loading}>
+			<object type="image/svg+xml" data={Loading} className="loading">
 				svg-animation
 			</object>
 		);
@@ -22,8 +23,8 @@ const Main = () => {
 
 	return (
 		<main>
-			{loadingIcon}
 			<Cards />
+			{loadingIcon}
 		</main>
 	);
 };

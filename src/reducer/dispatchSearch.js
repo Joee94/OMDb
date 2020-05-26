@@ -37,9 +37,9 @@ export const dispatchFail = (dispatch: Function, cache: Cache, searchValue: stri
 	});
 };
 
-export const dispatchLoading = (dispatch: Function, cache: Cache, searchValue: string) => {
+export const dispatchLoading = (dispatch: Function, cache: Cache, searchValue: string, movies: Movies) => {
 	dispatch({
 		type: SUBMIT_SEARCH,
-		payload: { movies: [], searchValue, cache, response: { error: '', loading: true } }
+		payload: { movies, searchValue, cache, response: { error: '', loading: true } }
 	});
 };

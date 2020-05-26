@@ -70,7 +70,7 @@ li:hover {
 }
 
 ul {
-	margin: 5vh;
+	margin-top: 5vh;
 	display: flex;
 	list-style-type: none;
 	flex-wrap: wrap;
