@@ -3,6 +3,7 @@ import React, { useContext, useEffect } from 'react';
 import Card from './card';
 import './card.css';
 import { Context } from '../../../Context';
+import canScroll from './canScroll';
 
 const endString = `That's all folks`;
 const Cards = () => {
@@ -24,8 +25,7 @@ const Cards = () => {
 	}, [searchValue, page, totalResults]);
 
 	function handleScroll() {
-		if (window.innerHeight + document.documentElement?.scrollTop <= document.documentElement?.offsetHeight - 50 && !loading) return;
-		if (movies.length < totalResults) actions.scrollSearch(searchValue, cache, movies, page, totalResults);
+		if (canScroll(document, loading, movies, totalResults)) actions.scrollSearch(searchValue, cache, movies, page, totalResults);
 		console.log('Fetch more list items!');
 	}
 
