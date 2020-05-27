@@ -6,10 +6,6 @@ main {
 	background-color: #e5eef9;
 }
 
-main .filters {
-	order: 0;
-}
-
 main .cards {
 	order: 1;
 }
@@ -21,10 +17,4 @@ main .cards {
 
 .cards + .loading {
 	margin-top: -2%;
-}
-
-@media (max-width: 2000px) {
-	main .filters {
-		display: none;
-	}
 }

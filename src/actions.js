@@ -16,16 +16,6 @@ export const useActions = (state: State, dispatch: Object) => ({
 		[dispatch]
 	),
 
-	submitFilters: useCallback(
-		(movies: Movies) => {
-			dispatch({
-				type: actionTypes.SUBMIT_FILTERS,
-				payload: { movies }
-			});
-		},
-		[dispatch]
-	),
-
 	submitSearch: useCallback(
 		(searchValue: string, cache: Cache, response: ApiResponse, page: number) => {
 			console.log(page);

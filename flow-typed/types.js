@@ -3,7 +3,6 @@ export type State = {
 	movies: Movies,
 	response: ApiResponse,
 	cache: Cache,
-	filters: Filters,
 	page: number,
 	totalResults: number
 };
@@ -53,8 +52,4 @@ export type MovieData = {
 export type Rating = {
 	Source: string,
 	Value: string
-};
-
-export type Filters = {
-	year: number
 };

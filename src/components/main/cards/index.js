@@ -40,10 +40,10 @@ const Cards = () => {
 				);
 			});
 			return (
-				<div className="cards">
+				<>
 					<ul>{moviesList}</ul>
 					{noMoviesLeft}
-				</div>
+				</>
 			);
 		}
 		if (error) return <h2>{error}</h2>;

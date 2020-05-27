@@ -17,15 +17,13 @@ const SearchBar = () => {
 	};
 	return (
 		<form className="searchBar hide-submit" onSubmit={handleChange}>
-			<label>
-				{searchLabel}
-				<input
-					type="search" //Could this be type search- the cross poses a styling issue
-					placeholder="Star Wars 2: Electric Boogaloo"
-					onChange={(e) => (currentSearchValue = e.target.value)}
-					disabled={response.loading ? 'disabled' : null}
-				/>
-			</label>
+			<label>{searchLabel}</label>
+			<input
+				type="search" //Could this be type search- the cross poses a styling issue
+				placeholder="Star Wars 2: Electric Boogaloo"
+				onChange={(e) => (currentSearchValue = e.target.value)}
+				disabled={response.loading ? 'disabled' : null}
+			/>
 			<input type="submit" value="Submit" />
 		</form>
 	);

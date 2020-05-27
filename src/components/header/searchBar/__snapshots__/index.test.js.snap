@@ -7,13 +7,13 @@ exports[`SearchBar when loading should create the SearchBar component 1`] = `
 >
   <label>
     Search OMDb's film database
-    <input
-      disabled="disabled"
-      onChange={[Function]}
-      placeholder="Star Wars 2: Electric Boogaloo"
-      type="search"
-    />
   </label>
+  <input
+    disabled="disabled"
+    onChange={[Function]}
+    placeholder="Star Wars 2: Electric Boogaloo"
+    type="search"
+  />
   <input
     type="submit"
     value="Submit"
@@ -28,13 +28,13 @@ exports[`SearchBar when not loading should create the SearchBar component 1`] = 
 >
   <label>
     Search OMDb's film database
-    <input
-      disabled={null}
-      onChange={[Function]}
-      placeholder="Star Wars 2: Electric Boogaloo"
-      type="search"
-    />
   </label>
+  <input
+    disabled={null}
+    onChange={[Function]}
+    placeholder="Star Wars 2: Electric Boogaloo"
+    type="search"
+  />
   <input
     type="submit"
     value="Submit"
