@@ -13,7 +13,6 @@ describe('SearchBar', () => {
 	});
 	describe('when loading', () => {
 		const contextValues = { state: { response: { loading: true }, searchValue: 'mock-search-value' } };
-		jest.spyOn(React, 'useContext').mockImplementation(() => contextValues);
 		const component = renderer.create(<SearchBar />);
 		it('should create the SearchBar component', () => {
 			expect(component).toMatchSnapshot();
